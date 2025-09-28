@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Single-Page Website</title>
+  <style>
+   
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background-color: #4a90e2;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      margin-top: 10px;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin: 0 10px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    nav ul li a.active {
+      text-decoration: underline;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 30px auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      min-height: 200px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #ddd;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Welcome to My Page</h1>
+    <nav>
+      <ul>
+        <li><a data-section="about" class="active">About Me</a></li>
+        <li><a data-section="education">Education</a></li>
+        <li><a data-section="hobby">Hobby</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <!-- Content will go here -->
+  </main>
+
+  <footer>
+    <p>© 2025 My Page</p>
+  </footer>
+
+  <script>
+  
+    const sectionContent = {
+      about: `
+        <h2>About Me</h2>
+        <p>Hello! My name is Gungun Gupta. I live at Valmiki Nagar(Bihar).</p> 
+<p>I’m currently a student at Indian Institute of Information Technology Manipur from CSE branch. I enjoy exploring new subjects, reading, and learning new skills. I believe in working hard, staying curious, and always trying to improve a little bit every day.</p>
+<p>I value honesty, kindness, and persistence. I believe that every day is an opportunity to learn something new and to become a better version of myself. I hope to use what I learn to contribute positively to my community and the world.
+</p>
+        <p>I enjoy exploring new technologies, learning to code, and working on creative projects.</p>
+      `,
+      education: `
+        <h2>My Education</h2>
+        <ul>
+        <li>School(Matriculation):Lotus Public School(till 2022) — <strong>94.2%</strong></li></li>
+          <li>School(Intermediate): R.K. Senior Secondary School(2022-2024)— <strong>85%</strong></li>
+          <li>College / University: Indian Institute of Information Technology Manipur</li>
+          <li>Major / Field: CSE</li>
+          <li>Graduation Year: 2028</li>
+        </ul>
+      `,
+      hobby: `
+        <h2>My Hobby</h2>
+        <p>One of my favorite hobbies is Listening Music. It relaxes me and keeps me motivated.</p>
+        <p>Sometimes I also like to play Badminton.
+        I enjoy playing badminton regularly — it improves my reflexes, stamina, and coordination.
+        Badminton is my favourite sport; it keeps me active, sharp, and helps me unwind.
+        I play badminton in my free time with friends/co-players — it’s a fun way to stay fit and social.
+         I like badminton because it challenges me mentally and physically — fast pace, strategy, agility.</p>
+      `
+    };
+
+    
+    function loadSection(sectionName) {
+      const mainDiv = document.getElementById('main-content');
+      if (sectionContent[sectionName]) {
+        mainDiv.innerHTML = sectionContent[sectionName];
+      } else {
+        mainDiv.innerHTML = `<p>Sorry, section not found.</p>`;
+      }
+    }
+    function setupNavigation() {
+      const navLinks = document.querySelectorAll('nav a[data-section]');
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+         
+          navLinks.forEach(lnk => lnk.classList.remove('active'));
+      
+          link.classList.add('active');
+
+          const section = link.getAttribute('data-section') || link.getAttribute('data-section');
+          loadSection(section);
+        });
+      });
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      setupNavigation();
+      loadSection('about'); 
+    });
+  </script>
+
+</body>
+</html>
+
